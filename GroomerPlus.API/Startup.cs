@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GroomerPlus.Core.Repositories;
+using GroomerPlus.Infrastructure.Repositories.InMemory;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace GroomerPlus.API
 {
@@ -24,6 +21,9 @@ namespace GroomerPlus.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddMediatR(typeof(Startup));
+
+            services.AddSingleton<IClientRepository, InMemoryClientRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

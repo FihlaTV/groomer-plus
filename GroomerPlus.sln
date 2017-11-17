@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroomerPlus.API", "GroomerPlus.API\GroomerPlus.API.csproj", "{A015543C-D9E3-4E4C-965C-25035902AB5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroomerPlus.Core", "GroomerPlus.Core\GroomerPlus.Core.csproj", "{443942BB-555E-4AEE-BD8A-21279B3E2A1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroomerPlus.Core", "GroomerPlus.Core\GroomerPlus.Core.csproj", "{443942BB-555E-4AEE-BD8A-21279B3E2A1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroomerPlus.Infrastructure", "GroomerPlus.Infrastructure\GroomerPlus.Infrastructure.csproj", "{85041414-EE52-4FED-8D0B-9E954F059D4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{443942BB-555E-4AEE-BD8A-21279B3E2A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{443942BB-555E-4AEE-BD8A-21279B3E2A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{443942BB-555E-4AEE-BD8A-21279B3E2A1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85041414-EE52-4FED-8D0B-9E954F059D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85041414-EE52-4FED-8D0B-9E954F059D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85041414-EE52-4FED-8D0B-9E954F059D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85041414-EE52-4FED-8D0B-9E954F059D4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

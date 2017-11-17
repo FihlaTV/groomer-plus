@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GroomerPlus.Core
+﻿namespace GroomerPlus.Core.Entities
 {
     public class Client
     {
