@@ -1,11 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using GroomerPlus.Core;
-using GroomerPlus.Core.Entities;
-using MediatR;
 
-namespace GroomerPlus.API.Commands
+namespace GroomerPlus.API.Requests
 {
-    public class CreateClientCommand : IRequest<Client>
+    public class CreateClientRequest
     {
         [Required]
         public string FirstName { get; set; }

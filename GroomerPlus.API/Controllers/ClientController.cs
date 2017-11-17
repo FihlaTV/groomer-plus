@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GroomerPlus.API.Requests;
 using Microsoft.AspNetCore.Mvc;
-using GroomerPlus.API.Commands;
-using MediatR;
 using GroomerPlus.Core.Entities;
+using GroomerPlus.Core.Repositories;
 using Microsoft.Extensions.Logging;
 
 namespace GroomerPlus.API.Controllers
@@ -14,16 +14,34 @@ namespace GroomerPlus.API.Controllers
     {
         private readonly ILogger<ClientController> logger;
 
-        private readonly IMediator mediator;
+        private readonly IClientRepository clientRepository;
 
-        public ClientController(ILogger<ClientController> logger, IMediator mediator)
+        public ClientController(ILogger<ClientController> logger, IClientRepository clientRepository)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            this.mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            this.clientRepository = clientRepository ?? throw new ArgumentNullException(nameof(clientRepository));
+        }
+
+        [HttpGet("{clientId}")]
+        public async Task<IActionResult> GetClient(int clientId)
+        {
+            if (clientId <= 0)
+            {
+                return this.BadRequest();
+            }
+
+            Client client = await this.clientRepository.GetClientById(clientId);
+
+            if (client == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.Ok(client);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateClient([FromBody] CreateClientCommand command)
+        public async Task<IActionResult> CreateClient([FromBody] CreateClientRequest request)
         {
             if (!this.ModelState.IsValid)
             {
@@ -32,7 +50,15 @@ namespace GroomerPlus.API.Controllers
 
             try
             {
-                Client client = await this.mediator.Send(command);
+                Client client = new Client
+                {
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    EmailAddress = request.Email,
+                    PhoneNumber = request.Phone
+                };
+
+                await this.clientRepository.AddClient(client);
 
                 // Once we implement the get client functionality, we can update the link here.
                 return this.Created(string.Empty, client);

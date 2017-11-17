@@ -1,7 +1,5 @@
 ﻿using GroomerPlus.Core.Repositories;
-using GroomerPlus.Infrastructure.Repositories.InMemory;
 using GroomerPlus.Infrastructure.Repositories.SqlServer;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +21,6 @@ namespace GroomerPlus.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddMediatR(typeof(Startup));
 
             var connection = @"Server=(localdb)\mssqllocaldb;Database=GroomerPlus;Trusted_Connection=True;";
             services.AddDbContext<GroomingContext>(options => options.UseSqlServer(connection));
