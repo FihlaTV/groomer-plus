@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GroomerPlus.Core.Entities;
 using GroomerPlus.Core.Repositories;
@@ -29,6 +30,11 @@ namespace GroomerPlus.Infrastructure.Repositories.SqlServer
         public async Task<Client> GetClientById(int id)
         {
             return await this.context.Clients.SingleOrDefaultAsync(c => c.Id == id);
+        }
+
+        public async Task<IEnumerable<Client>> GetAllClients()
+        {
+            return await this.context.Clients.AsNoTracking().ToListAsync();
         }
     }
 }

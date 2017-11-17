@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GroomerPlus.API.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,14 @@ namespace GroomerPlus.API.Controllers
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.clientRepository = clientRepository ?? throw new ArgumentNullException(nameof(clientRepository));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllClients()
+        {
+            IEnumerable<Client> clients = await this.clientRepository.GetAllClients();
+
+            return this.Ok(clients);
         }
 
         [HttpGet("{clientId}")]

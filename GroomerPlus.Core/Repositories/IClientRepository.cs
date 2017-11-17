@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using GroomerPlus.Core.Entities;
 
 namespace GroomerPlus.Core.Repositories
@@ -7,5 +8,6 @@ namespace GroomerPlus.Core.Repositories
     {
         Task AddClient(Client client);
         Task<Client> GetClientById(int id);
+        Task<IEnumerable<Client>> GetAllClients();
     }
 }
