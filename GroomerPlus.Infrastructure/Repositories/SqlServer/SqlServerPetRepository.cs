@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using GroomerPlus.Core.Entities;
 using GroomerPlus.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +24,17 @@ namespace GroomerPlus.Infrastructure.Repositories.SqlServer
 
         public async Task<Pet> GetPet(int petId)
         {
-            return await this.context.Pets.SingleOrDefaultAsync(p => p.Id == petId);
+            return await this.context.Pets
+                .AsNoTracking()
+                .SingleOrDefaultAsync(p => p.Id == petId);
+        }
+
+        public async Task<IEnumerable<Pet>> GetPetsByClient(int clientId)
+        {
+            return await this.context.Pets
+                .AsNoTracking()
+                .Where(p => p.ClientId == clientId)
+                .ToListAsync();
         }
     }
 }

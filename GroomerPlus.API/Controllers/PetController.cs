@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GroomerPlus.API.Requests;
 using GroomerPlus.Core.Entities;
@@ -33,6 +34,15 @@ namespace GroomerPlus.API.Controllers
             }
 
             return Ok(pet);
+        }
+
+        [HttpGet]
+        [Route("api/Client/{clientId}/Pet")]
+        public async Task<IActionResult> GetPetsByClient(int clientId)
+        {
+            IEnumerable<Pet> pets = await this.petRepository.GetPetsByClient(clientId);
+
+            return this.Ok(pets);
         }
 
         [HttpPost]
