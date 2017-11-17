@@ -60,8 +60,7 @@ namespace GroomerPlus.API.Controllers
 
                 await this.clientRepository.AddClient(client);
 
-                // Once we implement the get client functionality, we can update the link here.
-                return this.Created(string.Empty, client);
+                return this.CreatedAtAction("GetClient", new { clientId = client.Id }, client);
             }
             catch (Exception e)
             {
