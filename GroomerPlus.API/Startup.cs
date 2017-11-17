@@ -25,6 +25,7 @@ namespace GroomerPlus.API
             var connection = @"Server=(localdb)\mssqllocaldb;Database=GroomerPlus;Trusted_Connection=True;";
             services.AddDbContext<GroomingContext>(options => options.UseSqlServer(connection));
             services.AddTransient<IClientRepository, SqlServerClientRepository>();
+            services.AddTransient<IPetRepository, SqlServerPetRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

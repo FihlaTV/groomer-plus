@@ -7,6 +7,8 @@ namespace GroomerPlus.Infrastructure.Repositories.SqlServer
     {
         public DbSet<Client> Clients { get; set; }
 
+        public DbSet<Pet> Pets { get; set; }
+
         public GroomingContext(DbContextOptions<GroomingContext> options)
             : base((DbContextOptions) options)
         {
