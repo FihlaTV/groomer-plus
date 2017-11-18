@@ -11,5 +11,6 @@ namespace GroomerPlus.Core.Repositories
         Task<Pet> GetPet(int petId);
 
         Task<IEnumerable<Pet>> GetPetsByClient(int clientId);
+        Task<IEnumerable<Pet>> GetAllPets();
     }
 }

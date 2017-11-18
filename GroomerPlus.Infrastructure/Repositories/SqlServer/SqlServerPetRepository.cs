@@ -36,5 +36,10 @@ namespace GroomerPlus.Infrastructure.Repositories.SqlServer
                 .Where(p => p.ClientId == clientId)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Pet>> GetAllPets()
+        {
+            return await this.context.Pets.AsNoTracking().ToListAsync();
+        }
     }
 }

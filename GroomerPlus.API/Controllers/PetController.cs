@@ -37,6 +37,15 @@ namespace GroomerPlus.API.Controllers
         }
 
         [HttpGet]
+        [Route("api/pet")]
+        public async Task<IActionResult> GetPets()
+        {
+            IEnumerable<Pet> pets = await this.petRepository.GetAllPets();
+
+            return this.Ok(pets);
+        }
+
+        [HttpGet]
         [Route("api/Client/{clientId}/Pet")]
         public async Task<IActionResult> GetPetsByClient(int clientId)
         {
