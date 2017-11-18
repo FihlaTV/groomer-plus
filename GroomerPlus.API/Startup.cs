@@ -26,6 +26,7 @@ namespace GroomerPlus.API
             services.AddDbContext<GroomingContext>(options => options.UseSqlServer(connection));
             services.AddTransient<IClientRepository, SqlServerClientRepository>();
             services.AddTransient<IPetRepository, SqlServerPetRepository>();
+            services.AddTransient<IAppointmentRepository, SqlServerAppointmentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
