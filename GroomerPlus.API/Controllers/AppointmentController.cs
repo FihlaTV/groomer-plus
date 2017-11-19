@@ -1,30 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GroomerPlus.API.Requests;
-using GroomerPlus.Core.Entities;
-using GroomerPlus.Core.Repositories;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿// <copyright file="AppointmentController.cs" company="GroomerPlus">
+// Copyright (c) GroomerPlus. All rights reserved.
+// </copyright>
 
 namespace GroomerPlus.API.Controllers
 {
+    using System;
+    using System.Threading.Tasks;
+    using GroomerPlus.API.Requests;
+    using GroomerPlus.Core.Entities;
+    using GroomerPlus.Core.Repositories;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+
+    /// <summary>
+    /// Handles all appointment related requests.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Produces("application/json")]
     [Route("api/Appointment")]
     public class AppointmentController : Controller
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
         private readonly ILogger<AppointmentController> logger;
 
+        /// <summary>
+        /// The repository
+        /// </summary>
         private readonly IAppointmentRepository repository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppointmentController"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        /// <param name="repository">The repository.</param>
         public AppointmentController(ILogger<AppointmentController> logger, IAppointmentRepository repository)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        /// <summary>
+        /// Gets the appointment.
+        /// </summary>
+        /// <param name="appointmentId">The appointment identifier.</param>
+        /// <returns>The result.</returns>
         [HttpGet]
         [Route("{appointmentId}")]
         public async Task<IActionResult> GetAppointment(int appointmentId)
@@ -39,6 +60,11 @@ namespace GroomerPlus.API.Controllers
             return this.Ok(appointment);
         }
 
+        /// <summary>
+        /// Creates the appointment.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The result.</returns>
         [HttpPost]
         public async Task<IActionResult> CreateAppointment([FromBody]CreateAppointmentRequest request)
         {
@@ -55,7 +81,7 @@ namespace GroomerPlus.API.Controllers
                     PetId = request.PetId
                 };
 
-                await this.repository.CreateAppointment(appointment);
+                await this.repository.AddAppointment(appointment);
 
                 return this.CreatedAtAction("GetAppointment", new { appointmentId = appointment.Id }, appointment);
             }

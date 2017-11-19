@@ -15,6 +15,10 @@ namespace GroomerPlus.Infrastructure.Migrations
     [Migration("20171118050914_AddedAppointments")]
     partial class AddedAppointments
     {
+        /// <summary>
+        /// Builds the target model.
+        /// </summary>
+        /// <param name="modelBuilder">The model builder.</param>
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

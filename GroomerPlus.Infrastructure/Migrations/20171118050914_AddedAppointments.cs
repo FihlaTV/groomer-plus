@@ -1,12 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
+﻿// <copyright file="20171118050914_AddedAppointments.cs" company="GroomerPlus">
+// Copyright (c) GroomerPlus. All rights reserved.
+// </copyright>
 
 namespace GroomerPlus.Infrastructure.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Migrations;
+
+    /// <summary>
+    /// A migration to add the appointments table.
+    /// </summary>
+    /// <seealso cref="Microsoft.EntityFrameworkCore.Migrations.Migration" />
     public partial class AddedAppointments : Migration
     {
+        /// <summary>
+        /// Ups the specified migration builder.
+        /// </summary>
+        /// <param name="migrationBuilder">The migration builder.</param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -25,6 +36,10 @@ namespace GroomerPlus.Infrastructure.Migrations
                 });
         }
 
+        /// <summary>
+        /// Downs the specified migration builder.
+        /// </summary>
+        /// <param name="migrationBuilder">The migration builder.</param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
